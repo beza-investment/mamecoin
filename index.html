@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mame-coin | Buy TikTok Coins</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top Contact Bar -->
+  <div class="top-contact">
+    <p>Contact: 0996350347 | haanifawol@gmail.com</p>
+  </div>
+
+  <!-- Header with TikTok Icon and Brand Name -->
+  <header>
+    <div class="header-container">
+        <img src="tiktok.png" alt="TikTok Icon" class="logo" />
+        <img src="coin.png" alt="TikTok Icon" class="logo" />
+      <h1>mame-coin</h1>
+    </div>
+  </header>
+
+  <main>
+    <h2>Buy TikTok Coins</h2>
+    <p>Select a package or create a custom order (min. 200 coins, 1 coin = 2 Birr).</p>
+    <div class="packages">
+      <!-- Fixed Packages -->
+      <div class="package">
+        <img src="coin.png" alt="50 Coins" />
+        <h3>50 Coins - 100 Birr</h3>
+        <button onclick="buyNow(50, 100)">Buy Now</button>
+      </div>
+      <div class="package">
+        <img src="coin.png" alt="100 Coins" />
+        <h3>100 Coins - 200 Birr</h3>
+        <button onclick="buyNow(100, 200)">Buy Now</button>
+      </div>
+      <div class="package">
+        <img src="coin.png" alt="500 Coins" />
+        <h3>500 Coins - 1000 Birr</h3>
+        <button onclick="buyNow(500, 1000)">Buy Now</button>
+      </div>
+      <div class="package">
+        <img src="coin.png" alt="1000 Coins" />
+        <h3>1000 Coins - 2000 Birr</h3>
+        <button onclick="buyNow(1000, 2000)">Buy Now</button>
+      </div>
+      <div class="package">
+        <img src="coin.png" alt="5000 Coins" />
+        <h3>5000 Coins - 10000 Birr</h3>
+        <button onclick="buyNow(5000, 10000)">Buy Now</button>
+      </div>
+      <!-- Custom Order Option -->
+      <div class="package custom-package">
+        <h3>Custom Order</h3>
+        <p>Enter coin amount (min 200 coins):</p>
+        <input type="number" id="customCoins" placeholder="e.g., 300" />
+        <button onclick="buyCustom()">Buy Custom</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function buyNow(coins, price) {
+      window.location.href = `order.html?coins=${coins}&price=${price}`;
+    }
+    function buyCustom() {
+      let coins = parseInt(document.getElementById("customCoins").value);
+      if (isNaN(coins) || coins < 200) {
+        alert("Please enter a valid coin amount (minimum 200 coins).");
+        return;
+      }
+      let price = coins * 2; // 1 coin = 2 Birr
+      window.location.href = `order.html?coins=${coins}&price=${price}`;
+    }
+  </script>
+</body>
+</html>

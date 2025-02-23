@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mame-coin | Complete Your Order</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Firebase (compat version for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <!-- Top Contact Bar with Telegram Link -->
+  <div class="top-contact">
+    <p>
+      Contact: 0996350347 | haanifawol@gmail.com |
+      <a href="https://t.me/ethiobirr14" target="_blank" class="telegram-link">
+        Join Telegram
+      </a>
+    </p>
+  </div>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+        <img src="tiktok.png" alt="TikTok Icon" class="logo" />
+        <img src="coin.png" alt="TikTok Icon" class="logo" />
+      <h1>mame-coin</h1>
+    </div>
+  </header>
+
+  <main>
+    <h2>Complete Your Order</h2>
+    <p>Fill in your details and choose your payment method.</p>
+    <div class="order-box">
+      <p><strong>Coins:</strong> <span id="coins"></span></p>
+      <p><strong>Price:</strong> <span id="price"></span> Birr</p>
+      <input type="text" id="username" placeholder="Enter your TikTok username" />
+      <input type="text" id="phone" placeholder="Enter your phone number" />
+      <select id="paymentMethod" onchange="updatePaymentInfo()">
+        <option value="">Select Payment Method</option>
+        <option value="Telebirr">Telebirr</option>
+        <option value="CBE">CBE</option>
+      </select>
+      <!-- Payment details will be updated here -->
+      <div id="paymentInfo"></div>
+      <button onclick="confirmOrder()">Done</button>
+    </div>
+  </main>
+
+  <script>
+    // Replace with your Firebase configuration details
+    const firebaseConfig = {
+        apiKey: "AIzaSyCayGcfnpCAGNDph3YTyEA9_KDdD2C5Fg0",
+  authDomain: "my-tiktok-cbd6f.firebaseapp.com",
+  databaseURL: "https://my-tiktok-cbd6f-default-rtdb.firebaseio.com",
+  projectId: "my-tiktok-cbd6f",
+  storageBucket: "my-tiktok-cbd6f.firebasestorage.app",
+  messagingSenderId: "964441294320",
+  appId: "1:964441294320:web:4c8da74a0cee8ed2644935",
+  measurementId: "G-RYBWW6XB10"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Retrieve package details from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const coins = urlParams.get("coins");
+    const price = urlParams.get("price");
+
+    document.getElementById("coins").textContent = coins;
+    document.getElementById("price").textContent = price;
+
+    // Update payment info based on the selected method
+    function updatePaymentInfo() {
+      const paymentMethod = document.getElementById("paymentMethod").value;
+      const paymentInfoDiv = document.getElementById("paymentInfo");
+      if (paymentMethod === "Telebirr") {
+        paymentInfoDiv.innerHTML = '<p><strong>Telebirr Payment:</strong> 0996350347 (Name: Hanif Awwal)</p>';
+      } else if (paymentMethod === "CBE") {
+        paymentInfoDiv.innerHTML = '<p><strong>CBE Payment:</strong> 1000081905847 (Name: Mekdes Yembo)</p>';
+      } else {
+        paymentInfoDiv.innerHTML = '';
+      }
+    }
+
+    function confirmOrder() {
+      const username = document.getElementById("username").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const paymentMethod = document.getElementById("paymentMethod").value;
+      if (!username || !phone || !paymentMethod) {
+        alert("Please fill in all fields (username, phone, and payment method).");
+        return;
+      }
+      // Save the order in Firestore with initial details
+      db.collection("orders")
+        .add({
+          username: username,
+          phone: phone,
+          paymentMethod: paymentMethod,
+          coins: coins,
+          price: price,
+          status: "pending",
+          timestamp: new Date(),
+          message: ""
+        })
+        .then((docRef) => {
+          // Store the order ID and details for the next step (message page)
+          const orderData = {
+            username: username,
+            phone: phone,
+            paymentMethod: paymentMethod,
+            coins: coins,
+            price: price
+          };
+          localStorage.setItem("orderId", docRef.id);
+          localStorage.setItem("orderDetails", JSON.stringify(orderData));
+          // Redirect to the message page
+          window.location.href = "message.html";
+        })
+        .catch((error) => {
+          console.error("Error saving order:", error);
+          alert("There was an error saving your order. Please try again.");
+        });
+    }
+  </script>
+</body>
+</html>

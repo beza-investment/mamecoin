@@ -1,0 +1,165 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f0f4f8;
+    color: #333;
+  }
+  
+  /* Top Contact Bar */
+  .top-contact {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  /* Header Styles */
+  header {
+    background: linear-gradient(135deg, #ff4500, #ff7f50);
+    padding: 15px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-container .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  /* Main Content */
+  main {
+    padding: 20px;
+    text-align: center;
+  }
+  h2 {
+    color: #ff4500;
+    margin-bottom: 10px;
+  }
+  
+  /* Packages Styles */
+  .packages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .package {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 220px;
+    transition: transform 0.2s ease;
+  }
+  .package:hover {
+    transform: translateY(-5px);
+  }
+  .package img {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  .package h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  .package button {
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  .package button:hover {
+    background: #e63900;
+  }
+  
+  /* Custom Package Styles */
+  .custom-package input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Order & Message Box Styles */
+  .order-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 320px;
+    margin: 30px auto;
+  }
+  .order-box input,
+  .order-box textarea,
+  .order-box select {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+  }
+  .order-box button {
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  .order-box button:hover {
+    background: #e63900;
+  }
+  
+  /* Admin Panel Order Card */
+  .order-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 10px auto;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: left;
+  }
+  .order-card p {
+    margin: 8px 0;
+    line-height: 1.5;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .packages {
+      flex-direction: column;
+      align-items: center;
+    }
+    .order-box {
+      width: 90%;
+    }
+    .header-container {
+      flex-direction: column;
+    }
+    .header-container .logo {
+      margin-bottom: 5px;
+    }
+  }
+  
